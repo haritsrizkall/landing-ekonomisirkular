@@ -13,10 +13,6 @@ export default function Document() {
               href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
             />
             <title>Ekonomisirkular ID</title>
-            <meta
-              name='description'
-              content='Ekonomi Sirkular ID merupakan platform pertama di Indonesia yang berfokus pada edukasi terkait pentingnya transformasi menuju ekonomi yang lebih berkelanjutan'
-            />
         </Head>
         <body>
             <Main />

@@ -33,6 +33,8 @@ const Research = ({post, related, news, ideas}) => {
         <Head>
             <title>Ekonomisirkular ID | {post.title}</title>
             <meta name="description" content={post.short_description} />
+            <meta name="title" content={post.title} />
+            <meta name="robots" content="index, follow" />
         </Head>
         <div className='bg-white w-screen box-border overflow-x-hidden'>
             <NavbarLanding/>

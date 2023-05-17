@@ -27,6 +27,13 @@ const NewIdea = ({post, related, research, news}) => {
       })
     }, [post])
     return (
+        <>
+        <Head>
+            <title>Ekonomisirkular ID | {post.title}</title>
+            <meta name="description" content={post.short_description} />
+            <meta name="title" content={post.title} />
+            <meta name="robots" content="index, follow" />
+        </Head>
         <div className='bg-white w-screen box-border overflow-x-hidden'>
             <NavbarLanding/>
             <div className="bg-header-news h-20 bg-cover">
@@ -136,6 +143,7 @@ const NewIdea = ({post, related, research, news}) => {
             </div>
             <Footer/>
         </div>
+        </>
     )
 }
 

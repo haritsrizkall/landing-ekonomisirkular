@@ -52,6 +52,12 @@ export default function Home({newsIdeas, research}) {
     
   return (
     <>
+    <Head>
+      <title>Ekonomi Sirkular ID</title>
+      <meta name='description' content='Ekonomi Sirkular ID merupakan platform pertama di Indonesia yang berfokus pada edukasi terkait pentingnya transformasi menuju ekonomi yang lebih berkelanjutan' />
+      <meta name='title' content='Ekonomi Sirkular ID' />
+      <meta name="robots" content="index, follow" />
+    </Head>
     <div className='bg-white w-screen box-border overflow-x-hidden'>
       <NavbarLanding/>
       <Hero HeroContent={landings ? landings.hero : null} SliderContent={sliders ? sliders : null}/>
