@@ -31,9 +31,6 @@ export default function Home({
   sliders,
   images
 }) {
-  // const { isError, isLoading, data: landings, status, error } = useQuery("landings", landingApi.getAllView);
-  // const { isError: isError2, isLoading: isLoading2, data: sliders, status: status2, error: error2 } = useQuery("sliders", sliderApi.getAll);
-  // const { isError: isError3, isLoading: isLoading3, data: images, status: status3, error: error3 } = useQuery("imagesLanding", ImageAPI.getPerPage);
   const visitMutation = useMutation(visitorAPI.visit, {
     onSuccess: (data) => {
     },
@@ -44,19 +41,10 @@ export default function Home({
   useEffect(() => {
       visitMutation.mutate();
   }, []);
-
-  // if (isLoading || isLoading2 || isLoading3) {
-  //   return (
-  //     <div className='bg-white w-screen box-border overflow-x-hidden'>
-  //       <NavbarLanding/>
-  //       <Loader isVisible={isLoading && isLoading2 && isLoading3}/>
-  //     </div>
-  //   )
-  // }
-    
   return (
     <>
     <Head>
+      <meta name="google-site-verification" content="rKw9R2DIe36KPX8umb1Jb-vKyX95KM0-xA-nvrSz0sU" />
       <title>Ekonomi Sirkular ID</title>
       <meta name='description' content='Ekonomi Sirkular ID merupakan platform pertama di Indonesia yang berfokus pada edukasi terkait pentingnya transformasi menuju ekonomi yang lebih berkelanjutan' />
       <meta name='title' content='Ekonomi Sirkular ID' />

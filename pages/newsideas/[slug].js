@@ -1,5 +1,6 @@
 import axios from "axios"
-import moment from "moment"
+import moment from "moment/moment"
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -10,9 +11,9 @@ import postAPI from "../../api/post"
 import Footer from "../../components/footer"
 import NavbarLanding from "../../components/navbar/navbar-landing"
 import { constant } from "../../constant"
-import Head from "next/head"
 
-const NewIdea = ({post, related, research, news}) => {
+
+const NewIdea = ({post, related, research, ideas}) => {
     useEffect(() => {
       const contentP = document.querySelectorAll(".content p")
       contentP.forEach((p) => {
@@ -26,6 +27,12 @@ const NewIdea = ({post, related, research, news}) => {
       contentH2.forEach((h2) => {
         h2.classList.add("text-2xl")
       })
+      const contentOl = document.querySelectorAll(".content ol")
+      contentOl.forEach((ol) => {
+        ol.classList.add("ml-5")
+        ol.classList.add("list-decimal")
+      })
+      
     }, [post])
     return (
         <>
@@ -59,7 +66,7 @@ const NewIdea = ({post, related, research, news}) => {
                                 width="1364px"
                                 height="862px"
                                 className="rounded"
-                                alt="ideas image"
+                                alt={post.title}
                             />
                         </div>
                         <div className="mt-12">
@@ -70,22 +77,28 @@ const NewIdea = ({post, related, research, news}) => {
                 <div className="basis-1/3 md:ml-10 mt-10 md:mt-0">
                     <div>
                         <div className="border-b-2 pb-5 mt-20 md:mt-0">
-                            <h2 className="text-primary font-rubik text-xl font-medium">Another ideas</h2>
+                            <h2 className="text-primary font-rubik text-xl font-medium">Another news</h2>
                         </div>
                         <div>
                             {
                                 related && related.map((item, index) => {
                                     return (
-                                        <div className="flex justify-between border-b-2 py-5 px-2" key={index.toString()}>
-                                            <Link href={`/news/${item.post_id}`}>
+                                        <div className="flex border-b-2 py-5 px-2" key={index.toString()}>
+                                            <div className="basis-2/3">
+                                            <Link href={`/newsideas/${item.slug}`}>
                                                 <h3 className="my-auto font-bold cursor-pointer text-primary font-rubik">{item.title}</h3>
                                             </Link>
-                                            <img src={`${constant.backendURL}/${item.image}`}
-                                                width="152px"
-                                                height="96px"
+                                            </div>
+                                            <div className="basis-1/3">
+                                            <Image 
+                                                src={`${constant.backendURL}/${item.image}`}
+                                                loader={() => `${constant.backendURL}/${item.image}`}
+                                                width="400px"
+                                                height="400px"
                                                 className="rounded"
-                                                alt="related ideas image"
+                                                alt="related news"
                                             />
+                                            </div>
                                         </div>
                                     )
                                 })
@@ -100,16 +113,22 @@ const NewIdea = ({post, related, research, news}) => {
                             {
                                 research && research.map((item, index) => {
                                     return (
-                                        <div className="flex justify-between border-b-2 py-5 px-2" key={index.toString()}>
-                                            <Link href={`/news/${item.post_id}`}>
+                                        <div className="flex border-b-2 py-5 px-2" key={index.toString()}>
+                                            <div className="basis-2/3">
+                                            <Link href={`/newsideas/${item.slug}`}>
                                                 <h3 className="my-auto font-bold cursor-pointer text-primary font-rubik">{item.title}</h3>
                                             </Link>
-                                            <img src={`${constant.backendURL}/${item.image}`}
-                                                width="152px"
-                                                height="96px"
+                                            </div>
+                                            <div className="basis-1/3">
+                                            <Image 
+                                                src={`${constant.backendURL}/${item.image}`}
+                                                loader={() => `${constant.backendURL}/${item.image}`}
+                                                width="400px"
+                                                height="400px"
                                                 className="rounded"
-                                                alt="related research image"
+                                                alt="related research"
                                             />
+                                            </div>
                                         </div>
                                     )
                                 })
@@ -118,22 +137,28 @@ const NewIdea = ({post, related, research, news}) => {
                     </div>
                     <div className="mt-10">
                         <div className="border-b-2 pb-5 mt-20 md:mt-0">
-                            <h2 className="text-primary font-rubik text-xl font-medium">News</h2>
+                            <h2 className="text-primary font-rubik text-xl font-medium">Ideas</h2>
                         </div>
                         <div>
                             {
-                                news && news.map((item, index) => {
+                                ideas && ideas.map((item, index) => {
                                     return (
-                                        <div className="flex justify-between border-b-2 py-5 px-2" key={index.toString()}>
-                                            <Link href={`/news/${item.post_id}`}>
+                                        <div className="flex border-b-2 py-5 px-2" key={index.toString()}>
+                                            <div className="basis-2/3">
+                                            <Link href={`/newsideas/${item.slug}`}>
                                                 <h3 className="my-auto font-bold cursor-pointer text-primary font-rubik">{item.title}</h3>
                                             </Link>
-                                            <img src={`${constant.backendURL}/${item.image}`}
-                                                width="152px"
-                                                height="96px"
+                                            </div>
+                                            <div className="basis-1/3">
+                                            <Image 
+                                                src={`${constant.backendURL}/${item.image}`}
+                                                loader={() => `${constant.backendURL}/${item.image}`}
+                                                width="400px"
+                                                height="400px"
                                                 className="rounded"
-                                                alt="related news image"
+                                                alt="related ideas"
                                             />
+                                            </div>
                                         </div>
                                     )
                                 })
@@ -149,18 +174,18 @@ const NewIdea = ({post, related, research, news}) => {
 }
 
 export async function getServerSideProps(ctx) {
-    const id = ctx.params.id
+    const slug = ctx.params.slug
     try {
-        const res = await postAPI.getPost(id)
-        const related = await postAPI.getPosts([2], 1, 6)
+        const res = await postAPI.getPostBySlug(slug)
+        const related = await postAPI.getPosts([1], 1, 6)
         const research = await postAPI.getPosts([3], 1, 6)
-        const news = await postAPI.getPosts([1], 1, 6)
+        const ideas = await postAPI.getPosts([2], 1, 6)
         return {
             props: {
                 post: res,
                 related: related.data,
                 research: research.data,
-                news: news.data
+                ideas: ideas.data
             }
         }  
     } catch (error) {

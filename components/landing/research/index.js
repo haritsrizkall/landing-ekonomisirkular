@@ -12,12 +12,14 @@ const Research = ({research}) => {
                 <div className="main flex flex-col-reverse md:flex-row">
                     <div className="basis-full md:basis-1/3 mt-5">
                         <div className="mb-5">
-                            <h2 className="text-2xl md:text-3xl font-medium font-rubik">{research ? research.title : 'Let’s switch to circular economy'}</h2>
+                            <Link href={`research/${research ? research.slug : 1}`}>
+                                <h2 className="text-2xl md:text-3xl font-medium font-rubik cursor-pointer">{research ? research.title : 'Let’s switch to circular economy'}</h2>
+                            </Link>
                             <p className="text-sm text-gray-500">{moment(research.createdAt).format("DD MMM YYYY")}</p>
                         </div>
                         <p className="font-rubik">{research ? research.short_description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu blandit sit diam dui integer viverra feugiat. Consectetur tellus quisque nunc, leo tempor, ipsum faucibus. Id nisl vestibulum, malesuada ultrices tellus dui, tortor vestibulum. Justo, viverra lectus et urna. Feugiat risus, est facilisis eget ornare morbi ut luctus fusce. Pellentesque ornare mauris eu commodo cursus et tincidunt tellus varius. Amet pharetra aliquam nec eu fringilla malesuada ac. Nec ac convallis ac commodo commodo sed. Amet pellentesque a, nec aliquam.'}</p>
                         <Link
-                            href={`research/${research ? research.post_id : 1}`}
+                            href={`research/${research ? research.slug : 1}`}
                         >
                             <a className="font-rubik text-primary">Read more...</a>
                         </Link>

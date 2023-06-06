@@ -20,6 +20,10 @@ const postAPI = {
         });
         return response.data.data;
     },
+    getPostBySlug: async (slug) => {
+        const response = await axios.get(`${constant.apiURL}/posts/slug/${slug}`);  
+        return response.data.data;
+    },
     getPost: async (id) => {
         const response = await axios.get(`${constant.apiURL}/posts/${id}`);
         return response.data.data;

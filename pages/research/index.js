@@ -52,7 +52,7 @@ const Research = ({posts}) => {
                                     </div>
                                 </div>
                                 <div className="basis-2/3 ml-0 md:ml-5">
-                                    <Link href={`/research/${item.post_id}`}>
+                                    <Link href={`/research/${item.slug}`}>
                                         <h3 className="font-rubik text-lg md:text-xl font-medium text-primary cursor-pointer">
                                             {item.title}
                                         </h3>
@@ -60,7 +60,7 @@ const Research = ({posts}) => {
                                     <p className="font-rubik mt-2">
                                     {item.short_description} 
                                     </p>
-                                    <Link href={`/research/${item.post_id}`}>
+                                    <Link href={`/research/${item.slug}`}>
                                         <a className="font-rubik text-primary">Read more...</a>
                                     </Link>
                                 </div>
