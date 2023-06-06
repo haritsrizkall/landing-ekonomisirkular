@@ -24,16 +24,20 @@ import { async } from 'regenerator-runtime'
 import postAPI from '../api/post'
 import { visitorAPI } from '../api/visitor'
 
-export default function Home({newsIdeas, research}) {
-  const { isError, isLoading, data: landings, status, error } = useQuery("landings", landingApi.getAllView);
-  const { isError: isError2, isLoading: isLoading2, data: sliders, status: status2, error: error2 } = useQuery("sliders", sliderApi.getAll);
-  const { isError: isError3, isLoading: isLoading3, data: images, status: status3, error: error3 } = useQuery("imagesLanding", ImageAPI.getPerPage);
+export default function Home({
+  newsIdeas, 
+  research,
+  landings,
+  sliders,
+  images
+}) {
+  // const { isError, isLoading, data: landings, status, error } = useQuery("landings", landingApi.getAllView);
+  // const { isError: isError2, isLoading: isLoading2, data: sliders, status: status2, error: error2 } = useQuery("sliders", sliderApi.getAll);
+  // const { isError: isError3, isLoading: isLoading3, data: images, status: status3, error: error3 } = useQuery("imagesLanding", ImageAPI.getPerPage);
   const visitMutation = useMutation(visitorAPI.visit, {
     onSuccess: (data) => {
-        console.log("visit success");
     },
     onError: (error) => {
-        console.log("visit error");
     }
   });
   
@@ -41,14 +45,14 @@ export default function Home({newsIdeas, research}) {
       visitMutation.mutate();
   }, []);
 
-  if (isLoading || isLoading2 || isLoading3) {
-    return (
-      <div className='bg-white w-screen box-border overflow-x-hidden'>
-        <NavbarLanding/>
-        <Loader isVisible={isLoading && isLoading2 && isLoading3}/>
-      </div>
-    )
-  }
+  // if (isLoading || isLoading2 || isLoading3) {
+  //   return (
+  //     <div className='bg-white w-screen box-border overflow-x-hidden'>
+  //       <NavbarLanding/>
+  //       <Loader isVisible={isLoading && isLoading2 && isLoading3}/>
+  //     </div>
+  //   )
+  // }
     
   return (
     <>
@@ -88,14 +92,20 @@ export async function getStaticProps() {
   try {
     const newsIdeas = await postAPI.getPosts([1, 2], 1, 1)
     const research = await postAPI.getPosts([3], 1, 1)
+    const landings = await landingApi.getAllView()
+    const sliders = await sliderApi.getAll()
+    const images = await ImageAPI.getPerPage()
 
     return {
       props: {
           newsIdeas: newsIdeas.data.length > 0 ? newsIdeas.data[0] : null,
           research: research.data.length > 0 ? research.data[0]: null,
-          statusCode: 200
+          statusCode: 200,
+          landings: landings,
+          sliders: sliders,
+          images: images
       },
-      revalidate: 60
+      revalidate: 60 * 60 * 1
     }
   } catch (error) {
     return {

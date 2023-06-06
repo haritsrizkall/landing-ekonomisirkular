@@ -8,11 +8,9 @@ const ImageEdit = ({isVisible, setIsVisible, selectedData}) => {
     const [image, setImage] = useState([])
     const mutation = useMutation(ImageAPI.update, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('images');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleClose = () => {
@@ -22,7 +20,6 @@ const ImageEdit = ({isVisible, setIsVisible, selectedData}) => {
     const handleSubmit = () => {
         const form = new FormData();
         image.length !== 0 && form.append("image", image)
-        console.log(selectedData.image_id);
         mutation.mutate({
             id: selectedData.image_id,
             form: form

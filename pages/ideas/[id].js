@@ -10,6 +10,7 @@ import postAPI from "../../api/post"
 import Footer from "../../components/footer"
 import NavbarLanding from "../../components/navbar/navbar-landing"
 import { constant } from "../../constant"
+import Head from "next/head"
 
 const NewIdea = ({post, related, research, news}) => {
     useEffect(() => {

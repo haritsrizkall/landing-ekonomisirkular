@@ -11,11 +11,9 @@ const SliderAdd = ({isVisible, setIsVisible}) => {
 
     const mutation = useMutation(sliderApi.create, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('sliders');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleClose = () => {

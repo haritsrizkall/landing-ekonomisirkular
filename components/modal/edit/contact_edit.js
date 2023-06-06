@@ -10,11 +10,9 @@ const ContactEdit = ({isVisible, setIsVisible, contact}) => {
 
     const mutation = useMutation(contactAPI.update, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('contacts');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     useEffect(() => {

@@ -9,7 +9,6 @@ export const authAPI = {
                 'Content-Type': 'application/json',
             }
         });
-        console.log(response.data.data)
         return response.data.data;
     }
 }

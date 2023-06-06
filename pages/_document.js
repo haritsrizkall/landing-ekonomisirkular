@@ -12,7 +12,6 @@ export default function Document() {
               rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
             />
-            <title>Ekonomisirkular ID</title>
         </Head>
         <body>
             <Main />

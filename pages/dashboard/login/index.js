@@ -16,14 +16,11 @@ const Login = () => {
         setIsLoading(true);
         authAPI.login(email, password)
             .then((res) => {
-                console.log("success")
-                console.log(res)
                 setIsLoading(false);
                 localStorage.setItem("token", res.token);
                 setError("");
                 router.push('/dashboard')
             }).catch((err) => {
-                console.log("error")
                 setIsLoading(false);
                 setError(err.response.data.message);
             })

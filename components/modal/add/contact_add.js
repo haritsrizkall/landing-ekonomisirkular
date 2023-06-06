@@ -13,11 +13,9 @@ const ContactAdd = ({isVisible, setIsVisible}) => {
 
     const mutation = useMutation(contactAPI.create, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('contacts');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleClose = () => {

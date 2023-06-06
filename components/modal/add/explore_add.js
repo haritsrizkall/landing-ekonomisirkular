@@ -9,11 +9,9 @@ const ExploreAdd = ({isVisible, setIsVisible}) => {
     const [content, setContent] = useState("");
     const mutation = useMutation(exploreApi.create, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('explores');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleSubmit = () => {

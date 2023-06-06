@@ -9,11 +9,9 @@ const QuestionGroupEdit = ({isVisible, setIsVisible, questionGroup}) => {
     const { isError, isLoading, data: questionSets, status, refetch } = useQuery("questionSets", questionSetsAPI.getAll);
     const mutation = useMutation(questionGroupAPI.editQuestionGroup, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('questionGroups');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     useEffect(() => {
@@ -91,7 +89,6 @@ const QuestionGroupEdit = ({isVisible, setIsVisible, questionGroup}) => {
                 <div>
                     <button className="bg-slate-300 px-10 py-1 rounded mt-4 mr-2 text-white" onClick={handleClose}>Close</button>
                     <button className="bg-blue-500 px-10 py-1 rounded mt-4 ml-2 text-white" onClick={() => {
-                        console.log("SUBMIT");
                         mutation.mutate({
                             question_group_id: questionGroup.question_group_id,
                             question_set_id: questionSetId,

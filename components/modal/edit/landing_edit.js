@@ -8,11 +8,9 @@ const LandingEdit = ({isVisible, setIsVisible, landing}) => {
 
     const mutation = useMutation(landingApi.update, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('landings');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     useEffect(() => {

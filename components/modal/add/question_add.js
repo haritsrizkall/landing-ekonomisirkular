@@ -12,11 +12,9 @@ const QuestionAdd = ({isVisible, setIsVisible}) => {
     const { isError, isLoading, error, data: questionGroups, refetch } = useQuery('questionGroup', () => questionGroupAPI.getAll(type));
     const mutation = useMutation(questionAPI.addQuestion, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('questions');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleClose = () => {
@@ -96,7 +94,6 @@ const QuestionAdd = ({isVisible, setIsVisible}) => {
                 <div>
                     <button className="bg-slate-300 px-10 py-1 rounded mt-4 mr-2 text-white" onClick={handleClose}>Close</button>
                     <button className="bg-blue-500 px-10 py-1 rounded mt-4 ml-2 text-white" onClick={() => {
-                        console.log("SUBMIT");
                         mutation.mutate({
                             question_group_id: questionGroup,
                             question: questionText

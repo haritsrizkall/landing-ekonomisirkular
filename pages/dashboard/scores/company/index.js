@@ -112,7 +112,6 @@ const ScoresCompany = () => {
         setEditModal(false);
     }
     const handleDelete = () => {
-        console.log(selectedData.score_id);
         mutationDelete.mutate(selectedData.score_id);
         setDeleteModal(false);
     }

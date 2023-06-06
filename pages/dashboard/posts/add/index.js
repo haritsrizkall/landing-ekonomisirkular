@@ -49,7 +49,6 @@ const AddPost = () => {
    const { isError, isLoading, data: categories, status } = useQuery("categories", categoryAPI.getAll);
    const mutation = useMutation(postAPI.addPost, {
         onSuccess: () => {
-            console.log("Success");
             setImage([])
             setContent('')
             setTitle('')

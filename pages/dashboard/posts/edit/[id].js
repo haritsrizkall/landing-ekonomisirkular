@@ -50,15 +50,11 @@ const EditPost = ({post}) => {
    const { isError, isLoading, data: categories, status } = useQuery("categories", categoryAPI.getAll);
    const mutation = useMutation(postAPI.update, {
         onSuccess: () => {
-            console.log("Success");
             router.push('/dashboard/posts')
         }
    })
    const handleSubmit = () => {
         const form = new FormData();
-        // console.log('title', title);
-        // console.log('content', content);
-        // console.log('category', category);
         form.append('title', title);
         form.append('content', content);
         image && form.append('image', image);

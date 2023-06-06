@@ -54,8 +54,6 @@ const Explore = ({ExploreContent, ImageContent}) => {
     useEffect(() => {
         if (ImageContent != null) {
             setImageContent(ImageContent)
-            console.log("============")
-            console.log(ImageContent)
         }
     }, [ImageContent])
 

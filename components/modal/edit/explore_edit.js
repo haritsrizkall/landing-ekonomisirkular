@@ -9,11 +9,9 @@ const ExploreEdit = ({isVisible, setIsVisible, explore}) => {
     const [content, setContent] = useState("");
     const mutation = useMutation(exploreApi.update, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('explores');
         },
         onError: () => {
-            console.log("Error");
         }
     })
 

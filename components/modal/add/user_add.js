@@ -12,11 +12,9 @@ const UserAdd = ({isVisible, setIsVisible}) => {
     const [role, setRole] = useState("ADMIN");
     const mutation = useMutation(userAPI.addUser, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('users');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleClose = () => {
@@ -84,7 +82,6 @@ const UserAdd = ({isVisible, setIsVisible}) => {
                 <div>
                     <button className="bg-slate-300 px-10 py-1 rounded mt-4 mr-2 text-white" onClick={handleClose}>Close</button>
                     <button className="bg-blue-500 px-10 py-1 rounded mt-4 ml-2 text-white" onClick={() => {
-                        console.log("SUBMIT");
                         mutation.mutate({
                             email: email,
                             password: password,

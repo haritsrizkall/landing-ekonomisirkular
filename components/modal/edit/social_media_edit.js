@@ -12,11 +12,9 @@ const SocialMediaEdit = ({isVisible, setIsVisible, socialMedia}) => {
 
     const mutation = useMutation(socialMediaAPI.update, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('socialmedias');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     useEffect(() => {
@@ -31,7 +29,6 @@ const SocialMediaEdit = ({isVisible, setIsVisible, socialMedia}) => {
         const form = new FormData();
         form.append("name", name)
         form.append("url", url)
-        console.log(imgUrl)
         imgUrl.length !== 0 && form.append("image", imgUrl)
         mutation.mutate({
             id: socialMedia.social_media_id,

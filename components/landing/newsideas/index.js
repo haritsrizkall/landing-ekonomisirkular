@@ -4,7 +4,6 @@ import Link from "next/link"
 import { constant } from "../../../constant"
 
 const NewsIdeas = ({newsIdeas}) => {
-    console.log(newsIdeas)
     return (
         <div className="mb-10">
             <div className="mx-5 md:w-3/4 md:m-auto">

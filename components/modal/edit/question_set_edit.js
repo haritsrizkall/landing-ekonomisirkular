@@ -8,11 +8,9 @@ const QuestionSetEdit = ({isVisible, setIsVisible, questionSet}) => {
     const queryClient = useQueryClient();
     const mutation = useMutation(questionSetsAPI.editQuestionSet, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('questionSets');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const [description, setDescription] = useState(questionSet.description);
@@ -71,7 +69,6 @@ const QuestionSetEdit = ({isVisible, setIsVisible, questionSet}) => {
                 <div>
                     <button className="bg-slate-300 px-10 py-1 rounded mt-4 mr-2 text-white" onClick={handleClose}>Close</button>
                     <button className="bg-blue-500 px-10 py-1 rounded mt-4 ml-2 text-white" onClick={() => {
-                        console.log("SUBMIT");
                         mutation.mutate({
                             id: questionSet.question_set_id,
                             name: questionSet.name,

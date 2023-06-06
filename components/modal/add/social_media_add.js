@@ -15,11 +15,9 @@ const SocialMediaAdd = ({isVisible, setIsVisible}) => {
 
     const mutation = useMutation(socialMediaAPI.addSocialMedia, {
         onSuccess: () => {
-            console.log("Success");
             queryClient.invalidateQueries('socialmedias');
         },
         onError: () => {
-            console.log("Error");
         }
     })
     const handleClose = () => {
