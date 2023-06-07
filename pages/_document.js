@@ -1,5 +1,7 @@
 
 import { Html, Head, Main, NextScript } from 'next/document'
+const gtag = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_GA_MEASUREMENT_ID}`;
+
 
 export default function Document() {
   return (
@@ -11,6 +13,19 @@ export default function Document() {
             <link
               rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+            />
+            <script async src={gtag} />
+            <script 
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_GA_MEASUREMENT_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `
+              }}
             />
         </Head>
         <body>
